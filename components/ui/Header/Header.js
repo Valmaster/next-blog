@@ -31,23 +31,23 @@ export default function Header() {
 						}}
 					>
 						<li>
-							<Link href='/'>Accueil</Link>
+							<a href='/'>Accueil</a>
 						</li>
 						<li>
-							<Link href='/articles'>Articles</Link>
+							<a href='/articles'>Articles</a>
 						</li>
 
 						{!session && !loading && (
 							<>
 								<li>
-									<Link href='/connexion'>
+									<a href='/connexion'>
 										Connexion
-									</Link>
+									</a>
 								</li>
 								<li>
-									<Link href='/inscription'>
+									<a href='/inscription'>
 										Inscription
-									</Link>
+									</a>
 								</li>
 							</>
 						)}
@@ -56,9 +56,9 @@ export default function Header() {
 								'administrateur',
 							) && (
 								<li>
-									<Link href='/ajouter'>
+									<a href='/ajouter'>
 										Ajouter
-									</Link>
+									</a>
 								</li>
 							)}
 						{session && (
