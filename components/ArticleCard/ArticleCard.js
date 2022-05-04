@@ -1,16 +1,18 @@
-// Librairies
+import Link from 'next/link';
 import classes from './ArticleCard.module.css';
 
-const ArticleCard = () => {
+const ArticleCard = (article) => {
 
     return (
-        <>
-            <div className={classes.ArticleCard}>
-                <h3>Titre</h3>
-                <p>Description</p>
-            </div>
-            <small>Date de création</small>
-        </>
+        <Link href={`/articles/${article.slug}`}>
+            <>
+                <a className={classes.ArticleCard}>
+                    <h3>{article.title}</h3>
+                    <p>{article.description}</p>
+                </a>
+                <small>{article.created_at}</small>
+            </>
+        </Link>
     );
 }
 
