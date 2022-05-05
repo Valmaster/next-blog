@@ -18,7 +18,6 @@ export default function Index() {
 					gap: '10px',
 				}}
 			>
-					<ArticleCard/>
 			</div>
 		</main>
 	);

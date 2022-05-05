@@ -39,6 +39,7 @@ export async function getStaticProps() {
 			.find()
 			.sort({ created_at: 'desc' })
 			.toArray();
+
 	} catch (error) {
 		console.log(error);
 	}

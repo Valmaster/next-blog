@@ -1,13 +1,11 @@
 // Librairies
 import classes from './Header.module.css';
 import Link from 'next/link';
-import { useSession, signOut } from 'next-auth/client';
 import { useRouter } from 'next/router';
 
 export default function Header() {
 	// Variables
 	const router = useRouter();
-	const [session, loading] = useSession();
 
 	return (
 		<header className={classes.Header}>
@@ -37,7 +35,6 @@ export default function Header() {
 							<Link href='/articles'>Articles</Link>
 						</li>
 
-						{!session && !loading && (
 							<>
 								<li>
 									<Link href='/connexion'>
@@ -50,18 +47,11 @@ export default function Header() {
 									</Link>
 								</li>
 							</>
-						)}
-						{session &&
-							session.user.roles.includes(
-								'administrateur',
-							) && (
 								<li>
 									<Link href='/ajouter'>
 										Ajouter
 									</Link>
 								</li>
-							)}
-						{session && (
 							<li>
 								<a
 									style={{ cursor: 'pointer' }}
@@ -69,7 +59,6 @@ export default function Header() {
 									Déconnexion
 								</a>
 							</li>
-						)}
 					</ul>
 				</nav>
 			</div>
