@@ -6,8 +6,8 @@ const ArticleCard = ({article = null}) => {
             <a className={classes.ArticleCard}>
                 <h3>{article.title}</h3>
                 <p>{article.description}</p>
+                <small>{article.created_at}</small>
             </a>
-            <small>{article.created_at}</small>
         </>
     );
 }
