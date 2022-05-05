@@ -17,6 +17,42 @@ export default function Article({article}) {
     );
 }
 
+export async function getServerSideProps(context) {
+    // Variables
+    let articleSelected;
+    let { params } = context;
+    const slug = params.slug;
+
+    try {
+        const client = await connectToDatabase();
+        const db = client.db();
+
+        // Récupérer le projet en cours
+        articleSelected = await db
+            .collection('articles')
+            .find({ slug: slug })
+            .toArray();
+    } catch (error) {
+        articleSelected = [];
+    }
+
+    if (!articleSelected[0]) {
+        return {
+            // notFound: true,
+            redirect: {
+                destination: '/',
+            },
+        };
+    }
+
+    return {
+        props: {
+            article: JSON.parse(JSON.stringify(articleSelected))[0],
+        },
+    };
+}
+
+/*
 
 export async function getStaticPaths() {
     // Variable
@@ -80,4 +116,5 @@ export async function getStaticProps(context) {
     };
 }
 
+*/
 
