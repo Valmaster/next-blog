@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 // Composants
 import Button from '../../components/ui/Button/Button';
 import Error from '../../components/ui/Error/Error';
+import {getSession} from "next-auth";
 
 export default function Connexion() {
 	// Variables
@@ -133,4 +134,21 @@ export default function Connexion() {
 			</section>
 		</>
 	);
+}
+
+export async function getServerSideProps(context) {
+	const session = await getSession({ req: context.req });
+
+	if (session) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false,
+			},
+		};
+	}
+
+	return {
+		props: { session },
+	};
 }

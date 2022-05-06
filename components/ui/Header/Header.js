@@ -2,10 +2,19 @@
 import classes from './Header.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useSession, signOut } from 'next-auth/client';
+
 
 export default function Header() {
 	// Variables
 	const router = useRouter();
+	const [session, loading] = useSession();
+
+	// Méthode
+	const onLogoutClickedHandler = () => {
+		signOut();
+		router.push('/');
+	};
 
 	return (
 		<header className={classes.Header}>
@@ -35,6 +44,7 @@ export default function Header() {
 							<Link href='/articles'>Articles</Link>
 						</li>
 
+						{!session && !loading && (
 							<>
 								<li>
 									<Link href='/connexion'>
@@ -47,18 +57,27 @@ export default function Header() {
 									</Link>
 								</li>
 							</>
-								<li>
-									<Link href='/add'>
-										Ajouter
-									</Link>
-								</li>
+						)}
+						{session &&
+						session.user.roles.includes(
+							'administrateur',
+						) && (
+							<li>
+								<Link href='/add'>
+									Ajouter
+								</Link>
+							</li>
+						)}
+						{session && (
 							<li>
 								<a
+									onClick={onLogoutClickedHandler}
 									style={{ cursor: 'pointer' }}
 								>
 									Déconnexion
 								</a>
 							</li>
+						)}
 					</ul>
 				</nav>
 			</div>

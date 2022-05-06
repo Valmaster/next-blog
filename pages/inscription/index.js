@@ -6,6 +6,7 @@ import { SpinnerDotted } from 'spinners-react';
 // Composants
 import Button from '../../components/ui/Button/Button';
 import Error from '../../components/ui/Error/Error';
+import {getSession} from "next-auth";
 
 export default function Inscription() {
 	// Variables
@@ -165,5 +166,22 @@ export default function Inscription() {
 			</section>
 		</>
 	);
+}
+
+export async function getServerSideProps(context) {
+	const session = await getSession({ req: context.req });
+
+	if (session) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false,
+			},
+		};
+	}
+
+	return {
+		props: { session },
+	};
 }
 

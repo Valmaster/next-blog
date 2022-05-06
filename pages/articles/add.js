@@ -5,6 +5,7 @@ import React, {useState} from 'react';
 import {useRouter} from 'next/router';
 import Error from "../../components/ui/Error/Error";
 import Button from "../../components/ui/Button/Button";
+import {getSession} from "next-auth";
 
 export default function Add() {
     // Variables
@@ -133,4 +134,30 @@ export default function Add() {
             </section>
         </>
     );
+}
+
+export async function getServerSideProps(context) {
+    const session = await getSession({req: context.req});
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/connexion',
+                permanent: false,
+            },
+        };
+    }
+
+    if (session && !session.user.roles.includes('administrateur')) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        };
+    }
+
+    return {
+        props: {session},
+    };
 }
