@@ -48,7 +48,7 @@ export default function Header() {
 								</li>
 							</>
 								<li>
-									<Link href='/ajouter'>
+									<Link href='/add'>
 										Ajouter
 									</Link>
 								</li>
