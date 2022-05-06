@@ -1,12 +1,12 @@
 // Librairies
 import NextAuth from 'next-auth';
-import Providers from 'next-auth/providers';
+import CredentialsProvider from "next-auth/providers/credentials"
 import { connectToDatabase } from '../../../helpers/mongodb';
 import { verifyPassword } from '../../../helpers/auth';
 
 export default NextAuth({
 	providers: [
-		Providers.Credentials({
+		CredentialsProvider({
 			async authorize(credentials) {
 				const { email, password } = credentials;
 

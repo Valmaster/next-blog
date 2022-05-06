@@ -2,13 +2,14 @@
 import classes from './Header.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useSession, signOut } from 'next-auth/client';
+import { useSession, signOut } from "next-auth/react"
 
 
 export default function Header() {
 	// Variables
 	const router = useRouter();
-	const [session, loading] = useSession();
+	const { data: session, status } = useSession()
+	const loading = status === "loading"
 
 	// Méthode
 	const onLogoutClickedHandler = () => {
