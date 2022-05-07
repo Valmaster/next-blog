@@ -6,7 +6,7 @@ import { SpinnerDotted } from 'spinners-react';
 // Composants
 import Button from '../../components/ui/Button/Button';
 import Error from '../../components/ui/Error/Error';
-import {getSession} from "next-auth";
+import {getSession} from "next-auth/react";
 
 export default function Inscription() {
 	// Variables

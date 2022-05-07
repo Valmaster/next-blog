@@ -74,7 +74,7 @@ export default async function handler(req, res) {
 		try {
 			await db
 				.collection('users')
-				.insertOne(nouvelUtilisateur);
+				.insertOne(newUser);
 		} catch (error) {
 			clientMongoDB.close();
 			res.status(500).json({

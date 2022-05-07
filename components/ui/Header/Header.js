@@ -10,6 +10,7 @@ export default function Header() {
 	const router = useRouter();
 	const { data: session, status } = useSession()
 	const loading = status === "loading"
+	console.log('test', session);
 
 	// Méthode
 	const onLogoutClickedHandler = () => {
@@ -48,24 +49,24 @@ export default function Header() {
 						{!session && !loading && (
 							<>
 								<li>
-									<Link href='/connexion'>
-										Connexion
+									<Link href='/login'>
+										Login
 									</Link>
 								</li>
 								<li>
-									<Link href='/inscription'>
-										Inscription
+									<Link href='/register'>
+										Register
 									</Link>
 								</li>
 							</>
 						)}
 						{session &&
-						session.user.roles.includes(
+						session?.user?.roles?.includes(
 							'administrateur',
 						) && (
 							<li>
-								<Link href='/add'>
-									Ajouter
+								<Link href='/articles/add'>
+									Add
 								</Link>
 							</li>
 						)}
@@ -75,7 +76,7 @@ export default function Header() {
 									onClick={onLogoutClickedHandler}
 									style={{ cursor: 'pointer' }}
 								>
-									Déconnexion
+									Logout
 								</a>
 							</li>
 						)}

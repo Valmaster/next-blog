@@ -5,7 +5,7 @@ import React, {useState} from 'react';
 import {useRouter} from 'next/router';
 import Error from "../../components/ui/Error/Error";
 import Button from "../../components/ui/Button/Button";
-import {getSession} from "next-auth";
+import {getSession} from "next-auth/react";
 
 export default function Add() {
     // Variables

@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 // Composants
 import Button from '../../components/ui/Button/Button';
 import Error from '../../components/ui/Error/Error';
-import {getSession} from "next-auth";
+import {getSession, signIn} from "next-auth/react";
 
 export default function Connexion() {
 	// Variables
